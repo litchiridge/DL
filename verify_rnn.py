@@ -2,8 +2,19 @@ import torch
 import torch.nn as nn
 
 step = 4
-x = torch.normal(0,1,(step,100))
-rnn = nn.RNN(input_size=100, hidden_size=5, num_layers=2, nonlinearity='tanh', bias=True, bidirectional=True)
+input_size = 100
+hidden_size = 5
+num_layers = 2
+bidirectional = True
+nonlinearity = 'tanh'
+
+# initalize a test data x
+x = torch.normal(0,1,(step,input_size))
+# initialize a rnn
+rnn = nn.RNN(input_size=input_size, hidden_size=hidden_size, num_layers=num_layers, nonlinearity=nonlinearity, bias=True, bidirectional=bidirectional)
+# get the parameters of the rnn, and then manully write the forward pass
+
+
 h,c = rnn.forward(x)
 print(h.shape)
 print(c.shape)
@@ -30,3 +41,5 @@ for i in range(step):
     h1_list.append(hidden_state_l1)
     h1_r_list.append(hidden_state_l1_reverse)
 h1_state = torch.concat([torch.concat(h1_list), torch.concat(h1_r_list[::-1])], dim=1)
+
+
