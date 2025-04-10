@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 step = 4
 input_size = 100
@@ -19,7 +20,7 @@ h,c = rnn.forward(x)
 print(h.shape)
 print(c.shape)
 
-list(rnn.state_dict().keys())
+# list(rnn.state_dict().keys())
 w_xh_l0, w_hh_l0, b_xh_l0, b_hh_l0, w_xh_l0_reverse, w_hh_l0_reverse, b_xh_l0_reverse, b_hh_l0_reverse, w_xh_l1, w_hh_l1, b_xh_l1, b_hh_l1, w_xh_l1_reverse, w_hh_l1_reverse, b_xh_l1_reverse, b_hh_l1_reverse = rnn.parameters()
 
 hidden_state_l0 = torch.zeros(1, 5)
